@@ -1,0 +1,74 @@
+// scripts utilizados para a criação e para popular as tabelas
+
+---------------------------
+
+1.
+
+CREATE TABLE DEPARTAMENTOS (
+   id_departamento integer not null primary key,
+   nm_departamento varchar(100),
+   nm_local varchar(100)
+)
+
+---------------------------
+
+2. 
+
+OBS: analisando a questão nº 8 da prova senti a necessidade de criar uma tabela para funções, pelo fato de existir uma chave estrangeira "cod_emp_funcao" na tabela Empregados
+
+CREATE TABLE FUNCOES (
+   id_funcao integer not null primary key,
+   nm_funcao varchar(100)
+)
+
+---------------------------
+
+3.
+
+CREATE TABLE EMPREGADOS (
+   id_empregado integer not null primary key,
+   cod_departamento integer not null references DEPARTAMENTOS(id_departamento),
+   cod_emp_funcao integer not null references FUNCOES(id_funcao),
+   nm_empregado varchar(100),
+   nm_funcao varchar(100),
+   data_admissao date,
+   salario numeric(92,5),
+   comissao numeric(92,5)
+)
+
+---------------------------
+
+4.
+
+INSERT INTO departamentos VALUES (1, 'Administrativo', 'sala 3')
+INSERT INTO departamentos VALUES (2, 'Financeiro', 'sala 5')
+INSERT INTO departamentos VALUES (3, 'RH', 'sala 7')
+INSERT INTO departamentos VALUES (4, 'Comercial', 'sala 2')
+INSERT INTO departamentos VALUES (5, 'TI', 'sala 1')
+
+---------------------------
+
+5.
+
+INSERT INTO funcoes VALUES (1, 'Gestor de Vendas e Cobranças')
+INSERT INTO funcoes VALUES (2, 'Secretário(a)')
+INSERT INTO funcoes VALUES (3, 'Contador')
+INSERT INTO funcoes VALUES (4, 'Tesoureiro')
+INSERT INTO funcoes VALUES (5, 'Assistente de Departamento Pessoal')
+INSERT INTO funcoes VALUES (6, 'Programador')
+INSERT INTO funcoes VALUES (7, 'Analista')
+INSERT INTO funcoes VALUES (8, 'Técnico de Manutenção')
+INSERT INTO funcoes VALUES (9, 'Vendedor')
+INSERT INTO funcoes VALUES (10, 'Gerente de Marketing')
+
+---------------------------
+
+6.
+
+INSERT INTO empregados VALUES (1, 5, 6, 'José', 'Programador', '2005-07-16', 3000, 10)
+INSERT INTO empregados VALUES (2, 1, 1, 'Maria', 'Gestor de Vendas e Cobranças', '2002-11-20', 3000, 20)
+INSERT INTO empregados VALUES (3, 4, 9, 'Suzana', 'Vendedor', '2016-05-13', 2000, 20)
+INSERT INTO empregados VALUES (4, 2, 4, 'Roberto', 'Tesoureiro', '2018-12-07', 1500, 10)
+INSERT INTO empregados VALUES (5, 5, 8, 'Mateus', 'Técnico de Manutenção', '2010-12-14', 2000, 10)
+INSERT INTO empregados VALUES (6, 4, 10, 'Paula', 'Gerente de Marketing', '2010-06-23', 3000, 20)
+INSERT INTO empregados VALUES (7, 3, 5, 'Pedro', 'Assistente de Departamento Pessoal', '2011-04-09', 1500, 15)
